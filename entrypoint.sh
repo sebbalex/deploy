@@ -26,7 +26,7 @@ then
 	ssh-keyscan -p $SSH_PORT -H "$SSH_HOST" >> /root/.ssh/known_hosts
 fi
 
-rsync --progress -avzh \
+rsync --progress -rltDv \
 	--exclude='.git/' \
 	--exclude='.git*' \
 	--exclude='.editorconfig' \
@@ -36,7 +36,7 @@ rsync --progress -avzh \
 	--exclude='readme.md' \
 	--exclude='README.md' \
 	-e "ssh -i /root/.ssh/id_rsa" \
-	--rsync-path="rsync" . $SSH_USER@$SSH_HOST:$PATH_SOURCE
+	. $SSH_USER@$SSH_HOST:$PATH_SOURCE
 
 if [ $? -eq 0 ]
 then
