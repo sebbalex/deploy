@@ -35,6 +35,7 @@ rsync --progress -rltDv \
 	--exclude='Dockerfile' \
 	--exclude='readme.md' \
 	--exclude='README.md' \
+	--exclude='storage/' \
 	-e "ssh -i /root/.ssh/id_rsa" \
 	. $SSH_USER@$SSH_HOST:$PATH_SOURCE
 
